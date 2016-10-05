@@ -1,0 +1,10 @@
+1、父元素设置position:relative;子元素设置position:absolute
+子元素应用top、left、bottom、right的理解
+----当top:-100px;left:-2px; 表示以父元素的边框区域的左上角为基准做移动，移动后的位置作为子元素绘制的起点。
+比如一条线,从距离左上角上边100px，左上角右边2px开始画到左上角
+
+2、span是行内元素,组合多个元素在同一行，他不是块级区域，要变为块级区域，可以用display:block
+
+3、jquery和js的使用问题，如果js使用了jq，则jd需要定义在js之前，不然会有Uncaught ReferenceError: $ is not defined
+    <script type="text/javascript" rel="script" src="../library/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" rel="script" src="../js/ghost.js"></script>

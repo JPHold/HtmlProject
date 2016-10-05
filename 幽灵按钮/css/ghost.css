@@ -1,0 +1,270 @@
+/*设置幽灵组的属性*/
+.ghost-box {
+    width: 1000px;
+    height: 280px;
+    margin: 20px auto;
+    background: sandybrown;
+    position: relative;
+}
+
+/*设置每一个幽灵box的属性*/
+.link {
+    width: 290px;
+    height: 100%; /*ghost-box的高度*/
+    float: left;
+    margin: 0 20px;
+    position: relative;
+}
+
+/*设置幽灵按钮上面的图像的元素的属性*/
+.link .icon {
+    display: inline-block;
+    width: 100%;
+    height: 190px;
+    /*设置鼠标滑过幽灵图像时，旋转此图像的过度动画。这样才不会一下就完成动画，显得突兀*/
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    /*z轴为0，不会悬浮*/
+    z-index: 1;
+
+}
+
+/*设置鼠标滑过时,旋转幽灵图像，并悬浮幽灵图像*/
+.link .icon:hover {
+    /*旋转图像*/
+    -webkit-transform: rotate(360deg) scaleZ(22) scale(1.2);
+    -moz-transform: rotate(360deg) scaleZ(22) scale(1.2);
+    -ms-transform: rotate(360deg) scaleZ(22) scale(1.2);
+    -o-transform: rotate(360deg) scaleZ(22) scale(1.2);
+    transform: rotate(360deg) scaleZ(22) scale(1.2);
+    /*悬浮幽灵图像*/
+    z-index: 2;
+    /*  !*为了更能突显悬浮效果，应设置阴影*!
+      -webkit-box-shadow: 0px 0px 4px black;
+      -moz-box-shadow: 0px 0px 4px black;
+      box-shadow: 0px 0px 4px black;*/
+}
+
+/*设置幽灵按钮上面的图像*/
+.miss .icon {
+    background: url("../img/mission.png") no-repeat center center;
+}
+
+/*设置幽灵按钮上面的图像*/
+.play .icon {
+    background: url("../img/play.png") no-repeat center center;
+}
+
+/*设置幽灵按钮上面的图像*/
+.touch .icon {
+    background: url("../img/touch.png") no-repeat center center;
+}
+
+/*设置幽灵按钮的属性*/
+.button {
+    /*元素区域设置*/
+    display: block; /*必须设置,width和height才有作用,不然a元素是紧紧包住链接文本,就像android的TextView设置wrap-content*/
+    width: 156px;
+    height: 50px;
+    margin: 0 auto;
+
+    /*对left top right bottom属性无效*/
+    border: 1px solid white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    position: relative;
+    /*使得width和height的真正有效，因为padding和border都会使得元素的大小增加，不再是width和height定义的值，也就是超出了，
+        在css3之前是要将padding和border加入width和height，计算出真正的width和height，在css3之后就不需要这种古老的计算方式了，都帮我们计算好了*/
+
+    /*链接文本的设置*/
+    text-decoration: none; /*去除下划线*/
+    line-height: 50px; /*就默认将链接文本在a元素内垂直居中了*/
+    padding-left: 20px;
+    font-family: "微软雅黑 Light";
+    font-size: 13px;
+    font-weight: bolder;
+    color: white;
+
+    /*设置幽灵按钮内的跳转指示按钮*/
+    background: url("../img/allow.png") no-repeat 110px center;
+
+    /*跳转指示按钮的过渡效果*/
+    -webkit-transition: background-position 0.5s linear;
+    -moz-transition: background-position 0.5s linear;
+    -ms-transition: background-position 0.5s linear;
+    -o-transition: background-position 0.5s linear;
+    transition: background-position 0.5s linear;
+
+}
+
+/*鼠标滑过幽灵按钮，移动跳转提示按钮，提示可以跳转到页面*/
+.button:hover {
+    border: 2px solid;
+    /*跳转指示按钮的位置左移*/
+    background-position: 120px;
+}
+
+/*设置幽灵光线*/
+.button .line {
+    background: none; /*没有滑过幽灵按钮时，这些光线是不会出现的*/
+    position: absolute;
+    display: block;
+
+    /*这样就有问题*/
+    /*  -webkit-transition: left, width 0.5s linear;
+      -moz-transition: left, width 0.5s linear;
+      -ms-transition: left, width 0.5s linear;
+      -o-transition: left, width 0.5s linear;
+      transition: left, width 0.5s linear;*/
+    -webkit-transition: 0.5s linear;
+    -moz-transition: 0.5s linear;
+    -ms-transition: 0.5s linear;
+    -o-transition: 0.5s linear;
+    transition: 0.5s linear;
+}
+
+/*幽灵按钮被滑过时的基本共有属性*/
+.button:hover .line {
+    background: white;
+}
+
+/*设置左边幽灵光线*/
+.button .line-left {
+
+    /*幽灵光线的开始位置,决定了它是水平光线还是垂直光线*/
+    left: -110%;
+    top: -2px;
+    width: 0px;
+    height: 2px;
+}
+
+/*幽灵按钮被滑过时,显示左幽灵光线*/
+.button:hover .line-left {
+    /*这种方式，我暂时只能实现进入动画，出去的动画还未*/
+    /* animation-direction: alternate;
+     -webkit-animation-direction: alternate;
+     -moz-animation-direction: alternate;
+     -o-animation-direction: alternate;
+     animation-direction: alternate;;
+
+     animation-name: left-widthInAnimation;
+     animation-duration: 1s;*/
+
+    /*幽灵光线的开始位置,决定了它是水平光线还是垂直光线*/
+    left: 0px;
+    width: 100%;
+}
+
+/*设置右边幽灵光线*/
+.button .line-right {
+    /*幽灵光线的开始位置,决定了它是水平光线还是垂直光线*/
+    right: -110%;
+    bottom: -2px;
+    width: 0px;
+    height: 2px;
+}
+
+/*幽灵按钮被滑过时,显示右幽灵光线*/
+.button:hover .line-right {
+    right: 0%;
+    width: 100%;
+}
+
+/*设置上边幽灵光线*/
+.button .line-top {
+
+    /*幽灵光线的开始位置,决定了它是水平光线还是垂直光线*/
+    top: -210%;
+    right: -2px;
+    width: 2px;
+    height: 0px;
+}
+
+/*幽灵按钮被滑过时,显示上幽灵光线*/
+.button:hover .line-top {
+    top: 0%;
+    height: 100%;
+}
+
+/*设置下边幽灵光线*/
+.button .line-bottom {
+    /*幽灵光线的开始位置,决定了它是水平光线还是垂直光线*/
+    bottom: -110%;
+    left: -2px;
+    width: 2px;
+    height: 0px;
+}
+
+/*幽灵按钮被滑过时,显示上幽灵光线*/
+.button:hover .line-bottom {
+    bottom: 0%;
+    height: 100%;
+}
+
+/*!*配置左右幽灵光线的长度变化进来动画*!
+@keyframes left-widthInAnimation {
+    from {
+        left: -156px;
+        width: 0px;
+    }
+    to {
+        left: 0px;
+        width: 156px;
+    }
+}
+
+!*配置左右幽灵光线的长度变化出去动画*!
+@keyframes left-widthOutAnimation {
+    from {
+        left: 0px;
+        width: 156px;
+    }
+    to {
+        left: -156px;
+        width: 0px;
+    }
+}*/
+
+/*弹出提示框的设置*/
+.ghost-box .tip {
+    /*边框区域*/
+    position: absolute;
+    padding: 0px 14px;
+    height: 35px;;
+    line-height: 35px;
+    margin: 0 auto;
+    border-radius: 3px;
+    top: 160px;
+    opacity: 0;/*隐藏*/
+    /*背景*/
+    background: blue;
+    /*文本*/
+    color: #fff;
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.tip em {
+    font-style: normal;
+}
+
+.tip span {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    border: 7px solid transparent;
+    border-top-color: #2DCB70;
+    left: 50%;
+    margin-left: -10px;
+    /*left:50%+bottom-14px已经将span的左下角移到tip-div水平中心点
+    ，再 margin-left:-10px是在水平中心点再往左移动10px使得span在tip-div更为居中*/
+    bottom: -14px;
+}
+

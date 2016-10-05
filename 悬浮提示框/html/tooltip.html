@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>悬浮提示框</title>
+    <link type="text/css" rel="stylesheet" href="../css/index.css">
+    <script src="../js/index.js"></script>
+</head>
+<body>
+    <div class="content-box">
+        <h2>一段Android代码</h2>
+        <pre class="source">
+            Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable ex) {
+            //Throwable是所有异常的<a class="tooltip">老祖宗</a>
+
+            /*String printTxtPath = getApplicationContext().getPackageResourcePath() + "/files/" + fileName;
+            => /data/app/com.example.fileoperation-2.apk/files/printMenu.txt
+
+            String printTxtPath = getApplicationContext().getFilesDir();
+            String printTxtPath = getApplicationContext().getFilesDir().getAbsolutePath();
+            => /data/data/com.example.fileoperation/files
+
+            //获取当前<a  class="tooltip">程序</a>路径
+
+            getApplicationContext().getFilesDir().getAbsolutePath();
+
+            //获取该程序的<a  class="tooltip">程序</a>路径
+
+            String path=getApplicationContext().getPackageResourcePath();
+
+            //获取程序默认<a  class="tooltip">数据库</a>路径
+
+            getApplicationContext().getDatabasePath(s).getAbsolutePath();*/
+
+            File errFile = new File(getFilesDir().getAbsolutePath(), "err");
+            PrintWriter err = null;
+            try {
+            err = new PrintWriter(errFile);
+            ex.printStackTrace(err);
+            err.flush();
+            err.close();
+            } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            }
+
+            //出了错误，就应该重启应用，下面的操作来完成
+            Process.killProcess(Process.myPid());
+            }
+            });
+        </pre>
+    </div>
+
+
+</body>
+</html>
